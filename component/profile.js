@@ -1,14 +1,24 @@
-import React from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, Image, TouchableOpacity, TextInput, Alert } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 const MyAccountScreen = () => {
+  const [isEditing, setIsEditing] = useState(false);
+  const [name, setName] = useState('Ralph Edwards');
+  const [email, setEmail] = useState('james.naismith@example.com');
+  const [language, setLanguage] = useState('English');
+
+  const handleSave = () => {
+    setIsEditing(false);
+    Alert.alert('Profile Updated', `Name: ${name}\nEmail: ${email}\nLanguage: ${language}`);
+  };
+
   return (
     <View style={styles.container}>
       {/* Header Section */}
       <View style={styles.headerContainer}>
-        <TouchableOpacity>
-          <Text style={styles.editText}>Edit</Text>
+        <TouchableOpacity onPress={() => setIsEditing(!isEditing)}>
+          <Text style={styles.editText}>{isEditing ? 'Save' : 'Edit'}</Text>
         </TouchableOpacity>
       </View>
 
@@ -18,8 +28,16 @@ const MyAccountScreen = () => {
           source={{ uri: 'https://via.placeholder.com/150' }}
           style={styles.profileImage}
         />
-        <Text style={styles.profileName}>James Naismith</Text>
-        <Text style={styles.profileEmail}>james.naismith@example.com</Text>
+        {isEditing ? (
+          <TextInput
+            style={styles.profileNameInput}
+            value={name}
+            onChangeText={setName}
+          />
+        ) : (
+          <Text style={styles.profileName}>{name}</Text>
+        )}
+        <Text style={styles.profileEmail}>{email}</Text>
       </View>
 
       {/* Account Details Section */}
@@ -27,17 +45,41 @@ const MyAccountScreen = () => {
         <View style={styles.detailRow}>
           <Ionicons name="person" size={24} color="green" />
           <Text style={styles.detailText}>Name</Text>
-          <Text style={styles.detailValue}>Ralph Edwards</Text>
+          {isEditing ? (
+            <TextInput
+              style={styles.detailValueInput}
+              value={name}
+              onChangeText={setName}
+            />
+          ) : (
+            <Text style={styles.detailValue}>{name}</Text>
+          )}
         </View>
         <View style={styles.detailRow}>
           <Ionicons name="mail" size={24} color="green" />
           <Text style={styles.detailText}>Email</Text>
-          <Text style={styles.detailValue}>james.naismith@example.com</Text>
+          {isEditing ? (
+            <TextInput
+              style={styles.detailValueInput}
+              value={email}
+              onChangeText={setEmail}
+            />
+          ) : (
+            <Text style={styles.detailValue}>{email}</Text>
+          )}
         </View>
         <View style={styles.detailRow}>
           <Ionicons name="globe" size={24} color="green" />
           <Text style={styles.detailText}>Language</Text>
-          <Text style={styles.detailValue}>English</Text>
+          {isEditing ? (
+            <TextInput
+              style={styles.detailValueInput}
+              value={language}
+              onChangeText={setLanguage}
+            />
+          ) : (
+            <Text style={styles.detailValue}>{language}</Text>
+          )}
         </View>
         <View style={styles.detailRow}>
           <Ionicons name="notifications" size={24} color="green" />
@@ -102,6 +144,13 @@ const styles = StyleSheet.create({
   detailValue: {
     fontSize: 16,
     color: 'gray',
+  },
+  detailValueInput: {
+    fontSize: 16,
+    color: 'gray',
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
+    flex: 1,
   },
 });
 

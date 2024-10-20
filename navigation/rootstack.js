@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { View, TouchableOpacity, StyleSheet } from 'react-native';
+import { Ionicons } from '@expo/vector-icons'; // Import Ionicons for better icons
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -63,7 +64,7 @@ const RootStack = () => {
           name="HomeStack"
           component={NavBar}
           options={{
-            headerTintColor: primary,
+            headerShown: false,
           }}
         />
       </Stack.Navigator>
@@ -98,7 +99,7 @@ const NavBar = () => {
             return <FontAwesome name={iconName} size={size} color={color} />;
           },
           tabBarActiveTintColor: 'white',
-          tabBarInactiveTintColor: 'lightgray',
+          tabBarInactiveTintColor: 'black',
           tabBarStyle: {
             backgroundColor: '#4CAF50',
             paddingVertical: 10,
@@ -121,7 +122,7 @@ const NavBar = () => {
 
       {/* Menu Button to Open/Close the Side Menu */}
       <TouchableOpacity onPress={toggleMenu} style={styles.menuButton}>
-        <Text style={styles.menuButtonText}>&#9776;</Text>
+        <Ionicons name="menu" size={32} color="white" />
       </TouchableOpacity>
     </View>
   );
@@ -130,16 +131,11 @@ const NavBar = () => {
 const styles = StyleSheet.create({
   menuButton: {
     position: 'absolute',
-    top: 40,
+    top: 25,
     left: 20,
-    backgroundColor: '#4CAF50',
     padding: 10,
     borderRadius: 50,
     zIndex: 101, // Ensure the button is above other content
-  },
-  menuButtonText: {
-    color: 'white',
-    fontSize: 24,
   },
 });
 

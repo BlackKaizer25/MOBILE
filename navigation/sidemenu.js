@@ -3,53 +3,63 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 const SideMenu = ({ toggleMenu }) => {
   return (
-    <View style={styles.sideMenu}>
-      <TouchableOpacity onPress={toggleMenu} style={styles.closeButton}>
-        <Text style={styles.closeButtonText}>&times;</Text>
-      </TouchableOpacity>
-      <View style={styles.menuItems}>
-        <TouchableOpacity style={styles.menuItem}>
-          <Text style={styles.menuText}>👤 My Account</Text>
+    <View style={StyleSheet.absoluteFill}>
+      {/* Transparent Overlay to Capture Touch Outside the Side Menu */}
+      <TouchableOpacity
+        style={styles.overlay}
+        onPress={toggleMenu}
+        activeOpacity={1} // Ensures touch is registered without fading effect
+      />
+
+      {/* Side Menu */}
+      <View style={styles.sideMenu}>
+        <TouchableOpacity 
+              onPress={toggleMenu}>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.menuItem}>
-          <Text style={styles.menuText}>🔗 Share</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.menuItem}>
-          <Text style={styles.menuText}>❓ Help & Support</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.menuItem}>
-          <Text style={styles.menuText}>⚙️ Settings</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.menuItem}>
-          <Text style={styles.menuText}>🚪 Sign out</Text>
-        </TouchableOpacity>
+        <View style={styles.menuItems}>
+          <TouchableOpacity style={styles.menuItem}>
+            <Text style={styles.menuText}>My Account 👤</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.menuItem}>
+            <Text style={styles.menuText}>Share 🔗</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.menuItem}>
+            <Text style={styles.menuText}>Help & Support ❓</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.menuItem}>
+            <Text style={styles.menuText}>Settings ⚙️</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.menuItem}>
+            <Text style={styles.menuText}>Sign out 🚪</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  overlay: {
+    ...StyleSheet.absoluteFillObject, // Covers the entire screen
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Optional: gives a dimmed background effect
+  },
   sideMenu: {
     height: '100%',
     width: 250,
     position: 'absolute',
     left: 0,
     top: 0,
-    backgroundColor: '#28A745',
+    backgroundColor: 'green',
     padding: 20,
     flexDirection: 'column',
-    borderTopRightRadius: 100,
     zIndex: 102, // Ensure it appears above other content
-  },
-  closeButton: {
-    alignSelf: 'flex-end',
   },
   closeButtonText: {
     color: 'white',
     fontSize: 24,
   },
   menuItems: {
-    marginTop: 40,
+    marginTop: 80,
   },
   menuItem: {
     marginVertical: 20,

@@ -1,93 +1,175 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TextInput, ScrollView, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
-const ExploreScreen = () => {
+const HomeScreen = () => {
+
+  const navigation = useNavigation();
+
   return (
     <View style={styles.container}>
       {/* Header Section */}
       <View style={styles.headerContainer}>
-        <Image
-          source={{ uri: 'https://via.placeholder.com/50' }}
-          style={styles.profileImage}
-        />
+        <View style={styles.headerRight}>
+        </View>
       </View>
 
-      {/* Search Bar */}
-      <View style={styles.searchBarContainer}>
-        <Ionicons name="search" size={20} color="gray" style={styles.searchIcon} />
-        <TextInput
-          style={styles.searchInput}
-          placeholder="Search places, food, or services..."
-        />
-      </View>
-
+      {/* Scrollable Content */}
       <ScrollView contentContainerStyle={styles.contentContainer}>
+        
+        {/* Search Bar */}
+        <View style={styles.searchBarContainer}>
+          <Ionicons name="search" size={24} color="gray" style={styles.searchIcon} />
+          <TextInput
+            style={styles.searchInput}
+            placeholder="Search places, food, or services..."
+          />
+        </View>
+
         {/* Featured Attractions */}
         <Text style={styles.sectionTitle}>Featured Attractions</Text>
         <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.horizontalScrollView}>
-          {[1, 2, 3, 4].map((item) => (
-            <View key={item} style={styles.card}>
-              <Image source={{ uri: 'https://via.placeholder.com/150' }} style={styles.cardImage} />
-              <Text style={styles.cardTitle}>Attraction {item}</Text>
-            </View>
-          ))}
+
+          {/* First Featured Attraction */}
+          <View style={styles.card}>
+            <Image source={require('../assets/hills.png')} style={styles.cardImage} />
+            <Text style={styles.cardTitle}>Damilag Hills</Text>
+            <Text style={styles.cardSubtitle}>Enjoy the scenic views of the hills.</Text>
+          </View>
+
+          {/* Second Featured Attraction */}
+          <View style={styles.card}>
+            <Image source={require('../assets/cafe.png')} style={styles.cardImage} />
+            <Text style={styles.cardTitle}>Cafe 14-15</Text>
+            <Text style={styles.cardSubtitle}>Relax at this cozy cafe.</Text>
+          </View>
+
+          {/* Third Featured Attraction */}
+          <View style={styles.card}>
+            <Image source={require('../assets/concetta.png')} style={styles.cardImage} />
+            <Text style={styles.cardTitle}>Concetta Tourist</Text>
+            <Text style={styles.cardSubtitle}>Beautiful garden venue.</Text>
+          </View>
+
+          {/* Fourth Featured Attraction */}
+          <View style={styles.card}>
+            <Image source={require('../assets/bamboo.png')} style={styles.cardImage} />
+            <Text style={styles.cardTitle}>Bamboo Pavilion</Text>
+            <Text style={styles.cardSubtitle}>Explore the Bamboo Pavilion.</Text>
+          </View>
         </ScrollView>
 
         {/* Food Section */}
-        <Text style={styles.sectionTitle}>Food</Text>
+        <Text style={styles.sectionTitle}>Foods</Text>
         <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.horizontalScrollView}>
-          {[1, 2, 3, 4].map((item) => (
-            <View key={item} style={styles.card}>
-              <Image source={{ uri: 'https://via.placeholder.com/150' }} style={styles.cardImage} />
-              <Text style={styles.cardTitle}>Food {item}</Text>
-            </View>
-          ))}
+        
+         {/* First Food */}
+         <View style={styles.card}>
+            <Image source={require('../assets/umarika.png')} style={styles.cardImage} />
+            <Text style={styles.cardTitle}>Umarika Cafe</Text>
+            <Text style={styles.cardSubtitle}>Enjoy the scenic views of the hills.</Text>
+          </View>
+
+          {/* Second Food */}
+          <View style={styles.card}>
+            <Image source={require('../assets/lady.png')} style={styles.cardImage} />
+            <Text style={styles.cardTitle}>Lady's First Resto</Text>
+            <Text style={styles.cardSubtitle}>Relax at this cozy cafe.</Text>
+          </View>
+
+          {/* Third Food */}
+          <View style={styles.card}>
+            <Image source={require('../assets/rey.png')} style={styles.cardImage} />
+            <Text style={styles.cardTitle}>Rey's Warehouse</Text>
+            <Text style={styles.cardSubtitle}>Beautiful garden venue.</Text>
+          </View>
+
+          {/* Fourth Food */}
+          <View style={styles.card}>
+            <Image source={require('../assets/baelly.png')} style={styles.cardImage} />
+            <Text style={styles.cardTitle}>Baelly's Lechon House</Text>
+            <Text style={styles.cardSubtitle}>Explore the Bamboo Pavilion.</Text>
+          </View>
         </ScrollView>
 
         {/* Hotels and Accommodations Section */}
         <Text style={styles.sectionTitle}>Hotels and Accommodations</Text>
         <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.horizontalScrollView}>
-          {[1, 2, 3, 4].map((item) => (
-            <View key={item} style={styles.card}>
-              <Image source={{ uri: 'https://via.placeholder.com/150' }} style={styles.cardImage} />
-              <Text style={styles.cardTitle}>Hotel {item}</Text>
-            </View>
-          ))}
+          {/* First */}
+         <View style={styles.card}>
+            <Image source={require('../assets/eunice.png')} style={styles.cardImage} />
+            <Text style={styles.cardTitle}>Eunice Villa</Text>
+            <Text style={styles.cardSubtitle}>Enjoy the scenic views of the hills.</Text>
+          </View>
+
+          {/* Second */}
+          <View style={styles.card}>
+            <Image source={require('../assets/bcc.png')} style={styles.cardImage} />
+            <Text style={styles.cardTitle}>BCC Business Hotel</Text>
+            <Text style={styles.cardSubtitle}>Relax at this cozy cafe.</Text>
+          </View>
+
+          {/* Third */}
+          <View style={styles.card}>
+            <Image source={require('../assets/sebastian.png')} style={styles.cardImage} />
+            <Text style={styles.cardTitle}>Sebastian's Place</Text>
+            <Text style={styles.cardSubtitle}>Beautiful garden venue.</Text>
+          </View>
+
         </ScrollView>
 
         {/* Other Services Section */}
         <Text style={styles.sectionTitle}>Other Services</Text>
         <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.horizontalScrollView}>
-          {[1, 2, 3, 4].map((item) => (
-            <View key={item} style={styles.card}>
-              <Image source={{ uri: 'https://via.placeholder.com/150' }} style={styles.cardImage} />
-              <Text style={styles.cardTitle}>Service {item}</Text>
-            </View>
-          ))}
+           {/* First */}
+         <View style={styles.card}>
+            <Image source={require('../assets/savemart.png')} style={styles.cardImage} />
+            <Text style={styles.cardTitle}>Save Mart</Text>
+            <Text style={styles.cardSubtitle}>Enjoy the scenic views of the hills.</Text>
+          </View>
+
+          {/* Second */}
+          <View style={styles.card}>
+            <Image source={require('../assets/hardware.png')} style={styles.cardImage} />
+            <Text style={styles.cardTitle}>Cuarteros Hardware</Text>
+            <Text style={styles.cardSubtitle}>Relax at this cozy cafe.</Text>
+          </View>
+
+          {/* Third */}
+          <View style={styles.card}>
+            <Image source={require('../assets/splash.png')} style={styles.cardImage} />
+            <Text style={styles.cardTitle}>Concetta Tourist</Text>
+            <Text style={styles.cardSubtitle}>Beautiful garden venue.</Text>
+          </View>
+
         </ScrollView>
 
         {/* Transportation Section */}
         <Text style={styles.sectionTitle}>Transportation</Text>
         <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.horizontalScrollView}>
-          {[1, 2, 3, 4].map((item) => (
-            <View key={item} style={styles.card}>
-              <Image source={{ uri: 'https://via.placeholder.com/150' }} style={styles.cardImage} />
-              <Text style={styles.cardTitle}>Transport {item}</Text>
-            </View>
-          ))}
-        </ScrollView>
+         {/* First */}
+         <View style={styles.card}>
+            <Image source={require('../assets/bao.png')} style={styles.cardImage} />
+            <Text style={styles.cardTitle}>Tric-cab</Text>
+            <Text style={styles.cardSubtitle}>{/*asdfasdgasdg*/}</Text>
+          </View>
 
-        {/* Footer Section */}
-        <View style={styles.footerContainer}>
-          <Text style={styles.footerText}>Cultural Exhibition</Text>
-          <Text style={styles.footerDescription}>
-            "Working to bring respect, understanding, inclusivity, and peace through cultural events and programs."
-          </Text>
-          <TouchableOpacity style={styles.footerButton}>
-            <Text style={styles.footerButtonText}>Read more</Text>
-          </TouchableOpacity>
-        </View>
+          {/* Second */}
+          <View style={styles.card}>
+            <Image source={require('../assets/multicab.png')} style={styles.cardImage} />
+            <Text style={styles.cardTitle}>Multi-cab</Text>
+            <Text style={styles.cardSubtitle}>{/*asdfasdgasdg*/}</Text>
+          </View>
+
+          {/* Third */}
+          <View style={styles.card}>
+            <Image source={require('../assets/habal.png')} style={styles.cardImage} />
+            <Text style={styles.cardTitle}>Habal-habal</Text>
+            <Text style={styles.cardSubtitle}>{/*asdfasdgasdg*/}</Text>
+          </View>
+        </ScrollView>
+        
       </ScrollView>
     </View>
   );
@@ -99,17 +181,37 @@ const styles = StyleSheet.create({
     backgroundColor: '#e5e5e5',
   },
   headerContainer: {
+    backgroundColor: '#32a852',
     flexDirection: 'row',
-    justifyContent: 'flex-end', // Align profile image to the right
+    justifyContent: 'flex-end', // Align content to the right
     alignItems: 'center',
-    padding: 20,
-    paddingTop: 60, // Increased top padding here
-    backgroundColor: '#4CAF50',
+    paddingHorizontal: 20,
+    paddingVertical: 25,
+    paddingTop: 60, // Adjusted padding to make space
+    marginBottom: 20,
+  },
+  headerRight: {
+    justifyContent: 'center',
   },
   profileImage: {
     width: 40,
     height: 40,
-    borderRadius: 20,
+    borderRadius: 30, 
+  },
+  contentContainer: {
+    flexGrow: 1, // Use flexGrow to ensure content expands and is scrollable
+    paddingHorizontal: 15,
+    paddingBottom: 50, // Add padding at bottom to ensure content isn't cut off
+  },
+  greetingText: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginTop: 10,
+  },
+  exploreText: {
+    fontSize: 18,
+    color: 'gray',
+    marginBottom: 20,
   },
   searchBarContainer: {
     flexDirection: 'row',
@@ -118,7 +220,7 @@ const styles = StyleSheet.create({
     borderColor: 'gray',
     borderRadius: 10,
     paddingHorizontal: 10,
-    margin: 20,
+    marginBottom: 20,
     backgroundColor: 'white',
   },
   searchIcon: {
@@ -127,10 +229,6 @@ const styles = StyleSheet.create({
   searchInput: {
     flex: 1,
     height: 40,
-  },
-  contentContainer: {
-    paddingHorizontal: 15,
-    paddingBottom: 50,
   },
   sectionTitle: {
     fontSize: 18,
@@ -156,33 +254,19 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     margin: 5,
   },
+  cardSubtitle: {
+    fontSize: 14,
+    color: 'gray',
+    marginHorizontal: 5,
+    marginBottom: 5,
+  },
   footerContainer: {
     marginVertical: 20,
     padding: 20,
     backgroundColor: 'white',
     borderRadius: 10,
   },
-  footerText: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 10,
-  },
-  footerDescription: {
-    fontSize: 16,
-    color: 'gray',
-    marginBottom: 20,
-  },
-  footerButton: {
-    backgroundColor: '#4CAF50',
-    paddingVertical: 10,
-    alignItems: 'center',
-    borderRadius: 10,
-  },
-  footerButtonText: {
-    color: 'white',
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
+  
 });
 
-export default ExploreScreen;
+export default HomeScreen;

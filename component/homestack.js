@@ -28,7 +28,7 @@ const HomeStack = () => {
       <Stack.Screen
         name="BarangayDamilag"
         component={BarangayDamilag}
-        options={{ headerTitle: 'Barangay Damilag' }}
+        options={{ headerShown: false }}
       />
     </Stack.Navigator>
   );

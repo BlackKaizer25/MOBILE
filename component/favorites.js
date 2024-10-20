@@ -2,27 +2,40 @@ import React from 'react';
 import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
+// Import your images from the assets folder
+import place1 from '../assets/umarika.png';
+import place2 from '../assets/eunice.png';
+import place3 from '../assets/rey.png';
+import place4 from '../assets/hardware.png';
+
 const FavoritesScreen = () => {
+  // Define an array with the local image imports for each place
+  const places = [
+    { id: 1, name: 'Umarika Cafe', image: place1 },
+    { id: 2, name: 'Eunice Villa', image: place2 },
+    { id: 3, name: 'Reys Warehouse', image: place3 },
+    { id: 4, name: 'Cuarteros Hardware', image: place4 },
+  ];
+
   return (
     <View style={styles.container}>
       {/* Header Section */}
       <View style={styles.headerContainer}>
-        <View style={styles.headerSpacer} />
         <Text style={styles.headerText}>My Places</Text>
         <View style={styles.headerIcons}>
-          <Ionicons name="search" size={24} color="green" style={styles.icon} />
-          <Ionicons name="filter" size={24} color="green" style={styles.icon} />
+          <Ionicons name="search" size={24} color="white" style={styles.icon} />
+          <Ionicons name="filter" size={24} color="white" style={styles.icon} />
         </View>
       </View>
 
       {/* Favorite Places List */}
       <ScrollView contentContainerStyle={styles.contentContainer}>
-        {[1, 2, 3, 4].map((item) => (
-          <View key={item} style={styles.card}>
-            <Image source={{ uri: 'https://via.placeholder.com/150' }} style={styles.cardImage} />
+        {places.map((place) => (
+          <View key={place.id} style={styles.card}>
+            <Image source={place.image} style={styles.cardImage} />
             <View style={styles.cardContent}>
               <View style={styles.cardTitleRow}>
-                <Text style={styles.cardTitle}>Place {item}</Text>
+                <Text style={styles.cardTitle}>{place.name}</Text>
                 <View style={styles.ratingContainer}>
                   {[...Array(5)].map((_, index) => (
                     <Ionicons key={index} name="star" size={16} color="gold" />
@@ -51,19 +64,18 @@ const styles = StyleSheet.create({
   headerContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
+    alignItems: 'left',
     paddingHorizontal: 15,
     paddingTop: 60,
     paddingBottom: 20,
     backgroundColor: '#32a852',
   },
-  headerSpacer: {
-    width: 28,
-  },
   headerText: {
     fontSize: 24,
     fontWeight: 'bold',
     color: 'white',
+    paddingTop: 30,
+    paddingLeft: 145,
   },
   headerIcons: {
     flexDirection: 'row',
@@ -73,7 +85,7 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     paddingHorizontal: 20,
-    paddingBottom: 50,
+    paddingBottom: 10,
   },
   card: {
     flexDirection: 'row',
