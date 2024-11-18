@@ -1,7 +1,7 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import HomeScreen from '../component/home';
-import BarangayDamilag from '../component/BarangayDamilagInfo';
+import HomeScreen from './homepage/home';
+import BarangayDamilag from './brgydamilagpage/BarangayDamilagInfo';
 
 const Stack = createStackNavigator();
 

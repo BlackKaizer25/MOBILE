@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, Image } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, Image, Linking } from 'react-native';
 import { FontAwesome, FontAwesome5, AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
@@ -37,11 +37,24 @@ export default function LoginScreen() {
         Alert.alert('Business Owner link clicked!');
     };
 
+    // Handle social media link clicks
+    const handleOpenSocialMedia = (url) => {
+        Linking.canOpenURL(url)
+            .then((supported) => {
+                if (supported) {
+                    Linking.openURL(url);
+                } else {
+                    Alert.alert('Unable to open this link.');
+                }
+            })
+            .catch((err) => console.error('Error opening link:', err));
+    };
+
     return (
         <View style={styles.container}>
             <Text style={styles.header}>Login</Text>
             <Text style={styles.welcomeText}>Welcome to!</Text>
-            <Image source={require('../assets/Exploredamilag.png')} style={styles.logo} />
+            <Image source={require('../../assets/Exploredamilag.png')} style={styles.logo} />
 
             <View style={styles.inputGroup}>
                 <FontAwesome name="user" size={20} color="green" style={styles.icon} />
@@ -97,14 +110,14 @@ export default function LoginScreen() {
             <View style={styles.socialLoginContainer}>
                 <Text style={styles.socialLoginText}>Or Connect with</Text>
                 <View style={styles.socialIcons}>
-                    <TouchableOpacity>
-                        <FontAwesome name="facebook" size={32} color="#3b5998" style={styles.socialIcon} />
+                    <TouchableOpacity onPress={() => handleOpenSocialMedia('https://www.facebook.com')}>
+                        <FontAwesome name="facebook" size={32} color="#4267B2" style={styles.socialIcon} />
                     </TouchableOpacity>
-                    <TouchableOpacity>
-                        <AntDesign name="google" size={32} color="#db4437" style={styles.socialIcon} />
+                    <TouchableOpacity onPress={() => handleOpenSocialMedia('https://www.google.com')}>
+                        <AntDesign name="google" size={32} color="#DB4437" style={styles.socialIcon} />
                     </TouchableOpacity>
-                    <TouchableOpacity>
-                        <FontAwesome name="instagram" size={32} color="#c32aa3" style={styles.socialIcon} />
+                    <TouchableOpacity onPress={() => handleOpenSocialMedia('https://www.instagram.com')}>
+                        <FontAwesome name="instagram" size={32} color="#E4405F" style={styles.socialIcon} />
                     </TouchableOpacity>
                 </View>
             </View>
@@ -113,6 +126,7 @@ export default function LoginScreen() {
 }
 
 const styles = StyleSheet.create({
+    // Keep the styles the same as in your original code
     container: {
         flex: 1,
         justifyContent: 'center',
@@ -130,8 +144,8 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
     logo: {
-        width: 80,
-        height: 80,
+        width: 150,
+        height: 150,
         marginBottom: 20,
     },
     inputGroup: {

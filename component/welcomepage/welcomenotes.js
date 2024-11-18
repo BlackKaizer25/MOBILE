@@ -12,17 +12,17 @@ const WelcomeScreen = () => {
     {
       title: 'Know Damilag',
       description: 'Dive into the beauty and culture of Damilag, where discovery awaits!',
-      image: require('../assets/search.png'), 
+      image: require('../../assets/search.png'), 
     },
     {
       title: 'Experience Damilag',
       description: 'From scenic tours to weekend places, experience the top views with Damilag to its fullest.',
-      image: require('../assets/experience.png'),
+      image: require('../../assets/experience.png'),
     },
     {
       title: 'Explore Damilag',
       description: 'This is your journey to the hidden wonders of Damilag. Experience rich culture, art, and tourism that brings value to every second of your exploration. Find top places to visit or travel, the best food spots to eat, and services to help enjoy your stay to the fullest.',
-      image: require('../assets/explore.png'), 
+      image: require('../../assets/explore.png'), 
       showButton: true,
     },
   ];

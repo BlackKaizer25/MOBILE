@@ -16,7 +16,7 @@ const BarangayDamilag = () => {
       {/* Header Section */}
       <View style={styles.headerContainer}>
         <Image 
-          source={require('../assets/damilag.png')}  
+          source={require('../../assets/damilag.png')}  
           style={styles.headerImage}
         />
       </View>
@@ -85,16 +85,16 @@ const BarangayDamilag = () => {
       <Text style={styles.photosTitle}>Photos</Text>
       <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={styles.photoScrollView}>
         <View style={styles.photoFrame}>
-          <Image source={require('../assets/stage.png')} style={styles.photo} />   
+          <Image source={require('../../assets/stage.png')} style={styles.photo} />   
         </View>
         <View style={styles.photoFrame}>
-          <Image source={require('../assets/tree.png')} style={styles.photo} />
+          <Image source={require('../../assets/tree.png')} style={styles.photo} />
         </View>
         <View style={styles.photoFrame}>
-          <Image source={require('../assets/plant.png')} style={styles.photo} />
+          <Image source={require('../../assets/plant.png')} style={styles.photo} />
         </View>
         <View style={styles.photoFrame}>
-          <Image source={require('../assets/brigada.png')} style={styles.photo} />
+          <Image source={require('../../assets/brigada.png')} style={styles.photo} />
         </View>
       </ScrollView>
     </ScrollView>

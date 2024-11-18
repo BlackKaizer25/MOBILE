@@ -9,9 +9,9 @@ const SignUpScreen = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
-  const [businessType, setBusinessType] = useState('Food');
-  const [location, setLocation] = useState('Purok 7 - Barangay Demo');
-  const [role, setRole] = useState('Business Owner');
+  const [businessType, setBusinessType] = useState('');
+  const [location, setLocation] = useState('');
+  const [role, setRole] = useState('');
   const [isPasswordVisible, setPasswordVisible] = useState(false); // Password visibility state
 
   const [isRolePickerVisible, setRolePickerVisible] = useState(false);
@@ -29,7 +29,9 @@ const SignUpScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Business Owner</Text>
+      {/* GREEN HEADER */}
+      <View style={styles.header} />
+      <Text style={styles.headerText}>Business Owner</Text>
       <TouchableOpacity style={styles.imageContainer}>
         <Image source={{ uri: 'https://via.placeholder.com/100' }} style={styles.image} />
         <FontAwesome name="camera" size={20} color="green" style={styles.cameraIcon} />
@@ -72,6 +74,18 @@ const SignUpScreen = () => {
         </TouchableOpacity>
       </View>
 
+      {/* Email Address */}
+      
+      <View style={styles.inputGroup}>
+        <FontAwesome name="envelope" size={20} color="green" style={styles.icon} />
+        <TextInput
+          style={styles.input}
+          placeholder="Email address"
+          value={email}
+          onChangeText={setEmail}
+        />
+      </View>
+
       {/* Role Picker */}
       <Text style={styles.label}>Role</Text>
       <TouchableOpacity style={styles.pickerContainer} onPress={() => setRolePickerVisible(true)}>
@@ -97,18 +111,6 @@ const SignUpScreen = () => {
           </View>
         </View>
       </Modal>
-
-      {/* Email Address */}
-      <Text style={styles.label}>Email Address</Text>
-      <View style={styles.inputGroup}>
-        <FontAwesome name="envelope" size={20} color="green" style={styles.icon} />
-        <TextInput
-          style={styles.input}
-          placeholder="Email address"
-          value={email}
-          onChangeText={setEmail}
-        />
-      </View>
 
       {/* Business Type */}
       <Text style={styles.label}>Business Type</Text>
@@ -176,17 +178,23 @@ const SignUpScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 40,
     backgroundColor: '#f8f8f8',
   },
   header: {
+    height: 60, // Height for the green header
+    backgroundColor: '#4CAF50', // Green background color for header
+    width: '100%', // Fill the entire width
+  },
+  headerText: {
     fontSize: 24,
     fontWeight: 'bold',
     textAlign: 'center',
-    marginBottom: 20,
+    marginTop: 20, // Optional: Adjust to control spacing below the header
+    color: 'black', // Text color for the "Business Owner"
   },
   imageContainer: {
     alignSelf: 'center',
+    marginTop: 20,
     marginBottom: 20,
   },
   image: {
@@ -208,7 +216,8 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingHorizontal: 10,
     paddingVertical: 5,
-    marginBottom: 10,
+    marginBottom: 20,
+    marginHorizontal: 20, // Remove extra margin on left and right
   },
   input: {
     flex: 1,
@@ -226,6 +235,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     fontSize: 16,
     fontWeight: 'bold',
+    marginHorizontal: 20,
   },
   pickerContainer: {
     flexDirection: 'row',
@@ -236,7 +246,8 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingHorizontal: 10,
     paddingVertical: 10,
-    marginBottom: 10,
+    marginBottom: 20,
+    marginHorizontal: 20, // Remove extra margin on left and right
   },
   pickerText: {
     flex: 1,
@@ -249,6 +260,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignItems: 'center',
     marginTop: 20,
+    marginHorizontal: 40, 
   },
   signUpButtonText: {
     color: 'white',
@@ -283,5 +295,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
+
 
 export default SignUpScreen;

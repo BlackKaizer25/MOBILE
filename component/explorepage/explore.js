@@ -33,28 +33,28 @@ const HomeScreen = () => {
 
           {/* First Featured Attraction */}
           <View style={styles.card}>
-            <Image source={require('../assets/hills.png')} style={styles.cardImage} />
+            <Image source={require('../../assets/hills.png')} style={styles.cardImage} />
             <Text style={styles.cardTitle}>Damilag Hills</Text>
             <Text style={styles.cardSubtitle}>Enjoy the scenic views of the hills.</Text>
           </View>
 
           {/* Second Featured Attraction */}
           <View style={styles.card}>
-            <Image source={require('../assets/cafe.png')} style={styles.cardImage} />
+            <Image source={require('../../assets/cafe.png')} style={styles.cardImage} />
             <Text style={styles.cardTitle}>Cafe 14-15</Text>
             <Text style={styles.cardSubtitle}>Relax at this cozy cafe.</Text>
           </View>
 
           {/* Third Featured Attraction */}
           <View style={styles.card}>
-            <Image source={require('../assets/concetta.png')} style={styles.cardImage} />
+            <Image source={require('../../assets/concetta.png')} style={styles.cardImage} />
             <Text style={styles.cardTitle}>Concetta Tourist</Text>
             <Text style={styles.cardSubtitle}>Beautiful garden venue.</Text>
           </View>
 
           {/* Fourth Featured Attraction */}
           <View style={styles.card}>
-            <Image source={require('../assets/bamboo.png')} style={styles.cardImage} />
+            <Image source={require('../../assets/bamboo.png')} style={styles.cardImage} />
             <Text style={styles.cardTitle}>Bamboo Pavilion</Text>
             <Text style={styles.cardSubtitle}>Explore the Bamboo Pavilion.</Text>
           </View>
@@ -66,28 +66,28 @@ const HomeScreen = () => {
         
          {/* First Food */}
          <View style={styles.card}>
-            <Image source={require('../assets/umarika.png')} style={styles.cardImage} />
+            <Image source={require('../../assets/umarika.png')} style={styles.cardImage} />
             <Text style={styles.cardTitle}>Umarika Cafe</Text>
             <Text style={styles.cardSubtitle}>Enjoy the scenic views of the hills.</Text>
           </View>
 
           {/* Second Food */}
           <View style={styles.card}>
-            <Image source={require('../assets/lady.png')} style={styles.cardImage} />
+            <Image source={require('../../assets/lady.png')} style={styles.cardImage} />
             <Text style={styles.cardTitle}>Lady's First Resto</Text>
             <Text style={styles.cardSubtitle}>Relax at this cozy cafe.</Text>
           </View>
 
           {/* Third Food */}
           <View style={styles.card}>
-            <Image source={require('../assets/rey.png')} style={styles.cardImage} />
+            <Image source={require('../../assets/rey.png')} style={styles.cardImage} />
             <Text style={styles.cardTitle}>Rey's Warehouse</Text>
             <Text style={styles.cardSubtitle}>Beautiful garden venue.</Text>
           </View>
 
           {/* Fourth Food */}
           <View style={styles.card}>
-            <Image source={require('../assets/baelly.png')} style={styles.cardImage} />
+            <Image source={require('../../assets/baelly.png')} style={styles.cardImage} />
             <Text style={styles.cardTitle}>Baelly's Lechon House</Text>
             <Text style={styles.cardSubtitle}>Explore the Bamboo Pavilion.</Text>
           </View>
@@ -98,21 +98,21 @@ const HomeScreen = () => {
         <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.horizontalScrollView}>
           {/* First */}
          <View style={styles.card}>
-            <Image source={require('../assets/eunice.png')} style={styles.cardImage} />
+            <Image source={require('../../assets/eunice.png')} style={styles.cardImage} />
             <Text style={styles.cardTitle}>Eunice Villa</Text>
             <Text style={styles.cardSubtitle}>Enjoy the scenic views of the hills.</Text>
           </View>
 
           {/* Second */}
           <View style={styles.card}>
-            <Image source={require('../assets/bcc.png')} style={styles.cardImage} />
+            <Image source={require('../../assets/bcc.png')} style={styles.cardImage} />
             <Text style={styles.cardTitle}>BCC Business Hotel</Text>
             <Text style={styles.cardSubtitle}>Relax at this cozy cafe.</Text>
           </View>
 
           {/* Third */}
           <View style={styles.card}>
-            <Image source={require('../assets/sebastian.png')} style={styles.cardImage} />
+            <Image source={require('../../assets/sebastian.png')} style={styles.cardImage} />
             <Text style={styles.cardTitle}>Sebastian's Place</Text>
             <Text style={styles.cardSubtitle}>Beautiful garden venue.</Text>
           </View>
@@ -124,21 +124,21 @@ const HomeScreen = () => {
         <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.horizontalScrollView}>
            {/* First */}
          <View style={styles.card}>
-            <Image source={require('../assets/savemart.png')} style={styles.cardImage} />
+            <Image source={require('../../assets/savemart.png')} style={styles.cardImage} />
             <Text style={styles.cardTitle}>Save Mart</Text>
             <Text style={styles.cardSubtitle}>Enjoy the scenic views of the hills.</Text>
           </View>
 
           {/* Second */}
           <View style={styles.card}>
-            <Image source={require('../assets/hardware.png')} style={styles.cardImage} />
+            <Image source={require('../../assets/hardware.png')} style={styles.cardImage} />
             <Text style={styles.cardTitle}>Cuarteros Hardware</Text>
             <Text style={styles.cardSubtitle}>Relax at this cozy cafe.</Text>
           </View>
 
           {/* Third */}
           <View style={styles.card}>
-            <Image source={require('../assets/splash.png')} style={styles.cardImage} />
+            <Image source={require('../../assets/splash.png')} style={styles.cardImage} />
             <Text style={styles.cardTitle}>Concetta Tourist</Text>
             <Text style={styles.cardSubtitle}>Beautiful garden venue.</Text>
           </View>
@@ -150,21 +150,21 @@ const HomeScreen = () => {
         <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.horizontalScrollView}>
          {/* First */}
          <View style={styles.card}>
-            <Image source={require('../assets/bao.png')} style={styles.cardImage} />
+            <Image source={require('../../assets/bao.png')} style={styles.cardImage} />
             <Text style={styles.cardTitle}>Tric-cab</Text>
             <Text style={styles.cardSubtitle}>{/*asdfasdgasdg*/}</Text>
           </View>
 
           {/* Second */}
           <View style={styles.card}>
-            <Image source={require('../assets/multicab.png')} style={styles.cardImage} />
+            <Image source={require('../../assets/multicab.png')} style={styles.cardImage} />
             <Text style={styles.cardTitle}>Multi-cab</Text>
             <Text style={styles.cardSubtitle}>{/*asdfasdgasdg*/}</Text>
           </View>
 
           {/* Third */}
           <View style={styles.card}>
-            <Image source={require('../assets/habal.png')} style={styles.cardImage} />
+            <Image source={require('../../assets/habal.png')} style={styles.cardImage} />
             <Text style={styles.cardTitle}>Habal-habal</Text>
             <Text style={styles.cardSubtitle}>{/*asdfasdgasdg*/}</Text>
           </View>

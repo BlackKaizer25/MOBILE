@@ -1,7 +1,11 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { CommonActions } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 
 const SideMenu = ({ toggleMenu }) => {
+  const navigation = useNavigation();
+
   return (
     <View style={StyleSheet.absoluteFill}>
       {/* Transparent Overlay to Capture Touch Outside the Side Menu */}
@@ -13,11 +17,15 @@ const SideMenu = ({ toggleMenu }) => {
 
       {/* Side Menu */}
       <View style={styles.sideMenu}>
-        <TouchableOpacity 
-              onPress={toggleMenu}>
-        </TouchableOpacity>
+        <TouchableOpacity onPress={toggleMenu} />
         <View style={styles.menuItems}>
-          <TouchableOpacity style={styles.menuItem}>
+          <TouchableOpacity
+            style={styles.menuItem}
+            onPress={() => {
+              toggleMenu();
+              navigation.navigate('My Account');
+            }}
+          >
             <Text style={styles.menuText}>My Account 👤</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.menuItem}>
@@ -29,7 +37,18 @@ const SideMenu = ({ toggleMenu }) => {
           <TouchableOpacity style={styles.menuItem}>
             <Text style={styles.menuText}>Settings ⚙️</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.menuItem}>
+          <TouchableOpacity
+            style={styles.menuItem}
+            onPress={() => {
+              toggleMenu();
+              navigation.dispatch(
+                CommonActions.reset({
+                  index: 0,
+                  routes: [{ name: 'Login' }],
+                })
+              );
+            }}
+          >
             <Text style={styles.menuText}>Sign out 🚪</Text>
           </TouchableOpacity>
         </View>

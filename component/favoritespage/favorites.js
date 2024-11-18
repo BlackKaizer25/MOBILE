@@ -3,10 +3,10 @@ import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from 'rea
 import { Ionicons } from '@expo/vector-icons';
 
 // Import your images from the assets folder
-import place1 from '../assets/umarika.png';
-import place2 from '../assets/eunice.png';
-import place3 from '../assets/rey.png';
-import place4 from '../assets/hardware.png';
+import place1 from '../../assets/umarika.png';
+import place2 from '../../assets/eunice.png';
+import place3 from '../../assets/rey.png';
+import place4 from '../../assets/hardware.png';
 
 const FavoritesScreen = () => {
   // Define an array with the local image imports for each place
