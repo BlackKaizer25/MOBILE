@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
-import { Ionicons } from '@expo/vector-icons'; // Import Ionicons for better icons
+import { Ionicons } from '@expo/vector-icons';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -12,14 +12,28 @@ import LoginScreen from '../component/loginpage/login';
 import FavoritesScreen from '../component/favoritespage/favorites';
 import WelcomeScreen from '../component/welcomepage/welcomenotes';
 import SignUpScreen from '../component/signuppage/signup';
+import ContactUs from '../component/contactuspage/contactus';
+import Prices from '../component/pricespage/prices';
+import ReadMore from '../component/readmorepage/readmore';
 import SideMenu from '../navigation/sidemenu';
-import HomeScreen from '../component/homepage/home';
-import BarangayDamilag from '../component/brgydamilagpage/BarangayDamilagInfo';
 import HomeStack from '../component/homestack';
+import BusinessDetails from '../component/businessdetailspage/BusinessDetails';
+import GuidelinesPage from '../component/guidelinespage/guidelines';
 
 const { primary, tertiary } = Colors;
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
+
+const FavoritesStack = () => (
+  <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Screen name="FavoritesList" component={FavoritesScreen} />
+    <Stack.Screen name="BusinessDetails" component={BusinessDetails} />
+    <Stack.Screen name="ContactUs" component={ContactUs} />
+    <Stack.Screen name="Guidelines"component={GuidelinesPage}/>
+    <Stack.Screen name="Prices" component={Prices} />
+    <Stack.Screen name="ReadMore" component={ReadMore} />
+  </Stack.Navigator>
+);
 
 const RootStack = () => {
   return (
@@ -38,6 +52,7 @@ const RootStack = () => {
         }}
         initialRouteName="LoginScreen"
       >
+        {/* Authentication Screens */}
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen
           name="LoginScreen"
@@ -60,6 +75,8 @@ const RootStack = () => {
             headerShown: false,
           }}
         />
+
+        {/* Main Navigation */}
         <Stack.Screen
           name="HomeStack"
           component={NavBar}
@@ -109,7 +126,7 @@ const NavBar = () => {
       >
         <Tab.Screen name="Home" component={HomeStack} />
         <Tab.Screen name="Explore" component={ExploreScreen} />
-        <Tab.Screen name="Favorites" component={FavoritesScreen} />
+        <Tab.Screen name="Favorites" component={FavoritesStack} />
         <Tab.Screen name="My Account" component={MyAccountScreen} />
       </Tab.Navigator>
 

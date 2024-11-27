@@ -1,10 +1,8 @@
-// component/ContactUs.js
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Linking, Image } from 'react-native';
 import { Ionicons, FontAwesome } from '@expo/vector-icons';
 
 const ContactUs = ({ route, navigation }) => {
-  // Get contact information from route params
   const { contactInfo } = route.params || {};
 
   if (!contactInfo) {
@@ -17,7 +15,6 @@ const ContactUs = ({ route, navigation }) => {
 
   return (
     <View style={styles.container}>
-      {/* Image section with overlayed back arrow */}
       <View style={styles.imageContainer}>
         <Image source={contactInfo.image} style={styles.mainImage} />
         <View style={styles.headerOverlay}>
@@ -27,39 +24,31 @@ const ContactUs = ({ route, navigation }) => {
         </View>
       </View>
 
-      {/* Place Details Header */}
       <View style={styles.infoContainer}>
-        <Text style={styles.placeName}>{contactInfo?.name || "No name available"}</Text>
-        <Text style={styles.subtitle}>Mountain Top View</Text>
+        <Text style={styles.placeName}>{contactInfo.name || 'No name available'}</Text>
+        <Text style={styles.subtitle}>Manolo Fortich, Bukidnon</Text>
 
         {/* Star Rating */}
         <View style={styles.ratingContainer}>
-          {[...Array(5)].map((_, index) => (
+          {[...Array(contactInfo.rating || 0)].map((_, index) => (
             <Ionicons key={index} name="star" size={20} color="gold" />
           ))}
         </View>
 
-        {/* Location Row */}
         <View style={styles.locationRow}>
           <Ionicons name="location-outline" size={16} color="green" />
-          <Text style={styles.locationDetail}>{contactInfo?.location || "No location available"}</Text>
+          <Text style={styles.locationDetail}>{contactInfo.location || 'No location available'}</Text>
         </View>
 
-        {/* Divider */}
         <View style={styles.divider} />
       </View>
 
-      
-
-      {/* Contact Information Section */}
       <View style={styles.contactInfoContainer}>
-        {/* Contact Us Title */}
-      <Text style={styles.contactustitle}>Contact us:</Text>
-        <Text style={styles.contactText}>{contactInfo?.contactNumber || "No contact number available"}</Text>
-        <Text style={styles.contactText}>{contactInfo?.email || "No email available"}</Text>
-        <Text style={styles.contactAddress}>{contactInfo?.address || "No address available"}</Text>
+        <Text style={styles.contactustitle}>Contact us:</Text>
+        <Text style={styles.contactText}>{contactInfo.contactNumber || 'No contact number available'}</Text>
+        <Text style={styles.contactText}>{contactInfo.email || 'No email available'}</Text>
+        <Text style={styles.contactAddress}>{contactInfo.address || 'No address available'}</Text>
 
-        {/* Social Media Icons */}
         <View style={styles.socialIconsContainer}>
           <TouchableOpacity onPress={() => Linking.openURL('https://facebook.com')}>
             <FontAwesome name="facebook" size={24} color="white" style={styles.socialIcon} />
@@ -88,7 +77,9 @@ const styles = StyleSheet.create({
   },
   mainImage: {
     width: '100%',
-    height: 220,
+    height: 280,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
     resizeMode: 'cover',
   },
   headerOverlay: {
@@ -122,10 +113,10 @@ const styles = StyleSheet.create({
   },
   ratingContainer: {
     flexDirection: 'row',
-    alignItems: 'center', // Aligns stars closer to the subtitle
+    alignItems: 'center',
     width: '100%',
-    marginTop: 0, // Ensures no gap above the rating
-    marginBottom: 50, // Optional: add spacing below the stars if needed
+    marginTop: 0,
+    marginBottom: 50,
   },
   locationRow: {
     flexDirection: 'row',
@@ -144,11 +135,10 @@ const styles = StyleSheet.create({
     marginVertical: 15,
   },
   contactustitle: {
-        fontSize: 30,
-        fontWeight: 'bold',
-        color: '#333',
-        marginBottom: 30,
-        
+    fontSize: 30,
+    fontWeight: 'bold',
+    color: '#333',
+    marginBottom: 30,
   },
   contactInfoContainer: {
     height: '100%',

@@ -1,25 +1,13 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import placesData from '../placesdatapage/placesdata';
 
-// Import your images from the assets folder
-import place1 from '../../assets/umarika.png';
-import place2 from '../../assets/eunice.png';
-import place3 from '../../assets/rey.png';
-import place4 from '../../assets/hardware.png';
-
-const FavoritesScreen = () => {
-  // Define an array with the local image imports for each place
-  const places = [
-    { id: 1, name: 'Umarika Cafe', image: place1 },
-    { id: 2, name: 'Eunice Villa', image: place2 },
-    { id: 3, name: 'Reys Warehouse', image: place3 },
-    { id: 4, name: 'Cuarteros Hardware', image: place4 },
-  ];
+const FavoritesScreen = ({ navigation }) => {
+  const places = Object.values(placesData);
 
   return (
     <View style={styles.container}>
-      {/* Header Section */}
       <View style={styles.headerContainer}>
         <Text style={styles.headerText}>My Places</Text>
         <View style={styles.headerIcons}>
@@ -28,29 +16,27 @@ const FavoritesScreen = () => {
         </View>
       </View>
 
-      {/* Favorite Places List */}
       <ScrollView contentContainerStyle={styles.contentContainer}>
-        {places.map((place) => (
-          <View key={place.id} style={styles.card}>
-            <Image source={place.image} style={styles.cardImage} />
+        {places.map((place, index) => (
+          <TouchableOpacity
+            key={index}
+            style={styles.card}
+            onPress={() => navigation.navigate('BusinessDetails', { place })}
+          >
+            <Image source={place.images[0]} style={styles.cardImage} />
             <View style={styles.cardContent}>
               <View style={styles.cardTitleRow}>
                 <Text style={styles.cardTitle}>{place.name}</Text>
                 <View style={styles.ratingContainer}>
-                  {[...Array(5)].map((_, index) => (
-                    <Ionicons key={index} name="star" size={16} color="gold" />
+                  {[...Array(place.rating)].map((_, idx) => (
+                    <Ionicons key={idx} name="star" size={16} color="gold" />
                   ))}
                 </View>
               </View>
-              <Text style={styles.cardSubtitle}>Purok 15, Damilag, Manolo Fortich, Bukidnon</Text>
+              <Text style={styles.cardSubtitle}>{place.location}</Text>
             </View>
-          </View>
+          </TouchableOpacity>
         ))}
-
-        {/* Discover More Button */}
-        <TouchableOpacity style={styles.discoverButton}>
-          <Text style={styles.discoverButtonText}>Discover More</Text>
-        </TouchableOpacity>
       </ScrollView>
     </View>
   );
@@ -64,7 +50,7 @@ const styles = StyleSheet.create({
   headerContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'left',
+    alignItems: 'center',
     paddingHorizontal: 15,
     paddingTop: 60,
     paddingBottom: 20,
@@ -123,19 +109,6 @@ const styles = StyleSheet.create({
   },
   ratingContainer: {
     flexDirection: 'row',
-  },
-  discoverButton: {
-    backgroundColor: '#32a852',
-    paddingVertical: 15,
-    alignItems: 'center',
-    borderRadius: 10,
-    marginTop: 30,
-    marginHorizontal: 20,
-  },
-  discoverButtonText: {
-    color: 'white',
-    fontSize: 18,
-    fontWeight: 'bold',
   },
 });
 

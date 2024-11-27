@@ -1,8 +1,7 @@
-// component/BusinessDetails.js
 import React from 'react';
 import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
 import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
-import placesdata from './placesdata';
+import placesdata from '../placesdatapage/placesdata';
 
 const BusinessDetails = ({ route, navigation }) => {
   const { place } = route.params || {};
@@ -22,9 +21,9 @@ const BusinessDetails = ({ route, navigation }) => {
       <View style={styles.imageContainer}>
         <Image source={placeDetails.images[0]} style={styles.mainImage} />
         <View style={styles.headerOverlay}>
-          {/* Updated onPress to navigate to FavoritesScreen */}
-          <TouchableOpacity onPress={() => navigation.navigate('FavoritesList')} style={styles.iconButton}>
-            <Ionicons name="arrow-back" size={24} color="white" />
+          {/* Back button */}
+          <TouchableOpacity onPress={() => navigation.goBack()} style={styles.iconButton}>
+            <Ionicons name="arrow-back" size={24} color="#4CAF50" />
           </TouchableOpacity>
         </View>
       </View>
@@ -32,9 +31,7 @@ const BusinessDetails = ({ route, navigation }) => {
       {/* Place Details */}
       <View style={styles.infoContainer}>
         <Text style={styles.name}>{placeDetails.name}</Text>
-        <Text style={styles.subtitle}>Mountain Top View</Text>
-        <View style={styles.locationRow}>
-        </View>
+        <Text style={styles.subtitle}>Manolo Fortich, Bukidnon</Text>
 
         {/* Star Rating */}
         <View style={styles.ratingContainer}>
@@ -43,7 +40,7 @@ const BusinessDetails = ({ route, navigation }) => {
           ))}
         </View>
 
-        {/* Location Pin */}
+        {/* Location */}
         <View style={styles.locationRow}>
           <Ionicons name="location-outline" size={16} color="green" />
           <Text style={styles.locationDetail}>{placeDetails.location}</Text>
@@ -52,53 +49,80 @@ const BusinessDetails = ({ route, navigation }) => {
         {/* Divider */}
         <View style={styles.divider} />
 
-        {/* Overview Title */}
+        {/* Overview */}
         <Text style={styles.overviewTitle}>OVERVIEW</Text>
-
-        {/* Editable Description */}
         <Text style={styles.description}>{placeDetails.description}</Text>
 
         {/* Read More Button */}
-        <TouchableOpacity style={styles.readMoreButton}>
-          <Text style={styles.readMoreButtonText}>Read More</Text>
+        <TouchableOpacity style={styles.readMoreButton}
+          onPress={() =>
+          navigation.navigate('ReadMore', {
+            description: placeDetails.description,
+            placeName: placeDetails.name,
+            location: placeDetails.location,
+            rating: placeDetails.rating,
+            image: placeDetails.images[0], // Pass the image here
+          })
+        }
+      >
+        <Text style={styles.readMoreButtonText}>Read More</Text>
         </TouchableOpacity>
 
-         {/* Action Buttons Section */}
-<View style={styles.actionContainer}>
-  <TouchableOpacity style={styles.actionButton}>
-    <Ionicons name="people-outline" size={30} color="black" />
-    <Text style={styles.actionText}>Location</Text>
-  </TouchableOpacity>
-  <TouchableOpacity style={styles.actionButton}>
-    <FontAwesome5 name="user-check" size={30} color="black" />
-    <Text style={styles.actionText}>Guidelines</Text>
-  </TouchableOpacity>
-  <TouchableOpacity style={styles.actionButton}>
-    <FontAwesome5 name="percentage" size={30} color="black" />
-    <Text style={styles.actionText}>Prices</Text>
-  </TouchableOpacity>
-  <TouchableOpacity 
-  onPress={() => navigation.navigate('ContactUs', { 
-    contactInfo: {
-      contactNumber: placeDetails.contactNumber,
-      email: placeDetails.email,
-      address: placeDetails.address,
-      name: placeDetails.name,
-      image: placeDetails.images[0],
-      location: placeDetails.location,
-    } 
-  })} 
-  style={styles.actionButton}>
-  <FontAwesome5 name="address-book" size={30} color="black" />
-  <Text style={styles.actionText}>Contact Us</Text>
-  </TouchableOpacity>
 
 
+        {/* Action Buttons Section */}
+        <View style={styles.actionContainer}>
+          <TouchableOpacity style={styles.actionButton}>
+            <Ionicons name="people-outline" size={30} color="black" />
+            <Text style={styles.actionText}>Location</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.actionButton}
+            onPress={() =>
+               navigation.navigate('Guidelines', {
+                guidelines: placeDetails.guidelines,
+                placeName: placeDetails.name,
+                location: placeDetails.location,
+                rating: placeDetails.rating,
+                image: placeDetails.images[0],
+            })
+          }
+        >
+          <Ionicons name="book-outline" size={30} color="black" />
+          <Text style={styles.actionText}>Guidelines</Text>
+        </TouchableOpacity>
 
-</View>
+          <TouchableOpacity style={styles.actionButton}
+            onPress={() => navigation.navigate('Prices', {
+              placeDetails: placeDetails,
+            })
+          }
+        >
+            <FontAwesome5 name="percentage" size={30} color="black" />
+            <Text style={styles.actionText}>Prices</Text>
+          </TouchableOpacity>
 
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate('ContactUs', {
+                contactInfo: {
+                  contactNumber: placeDetails.contactNumber,
+                  email: placeDetails.email,
+                  address: placeDetails.address,
+                  name: placeDetails.name,
+                  image: placeDetails.images[0],
+                  location: placeDetails.location,
+                  rating: placeDetails.rating, // Include rating here
+                },
+              })
+            }
+            style={styles.actionButton}
+          >
+            <FontAwesome5 name="address-book" size={30} color="black" />
+            <Text style={styles.actionText}>Contact Us</Text>
+          </TouchableOpacity>
+        </View>
 
-          {/* Go there now Button */}
+        {/* Go There Now Button */}
         <TouchableOpacity style={styles.goThereButton}>
           <Text style={styles.goThereButtonText}>Go there now!</Text>
         </TouchableOpacity>
@@ -107,13 +131,9 @@ const BusinessDetails = ({ route, navigation }) => {
         <View style={styles.photosContainer}>
           <Text style={styles.photosTitle}>Photos</Text>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-            <Image source={placeDetails.images[0]} style={styles.photo} />
-            <Image source={require('../assets/bao.png')} style={styles.photo} />
-            <Image source={require('../assets/tree.png')} style={styles.photo} />
-            <Image source={require('../assets/bamboo.png')} style={styles.photo} />
-            <Image source={require('../assets/eunice.png')} style={styles.photo} />
-            <Image source={require('../assets/damilag.png')} style={styles.photo} />
-            <Image source={require('../assets/brigada.png')} style={styles.photo} />
+            {placeDetails.images.map((image, index) => (
+              <Image key={index} source={image} style={styles.photo} />
+            ))}
           </ScrollView>
         </View>
       </View>
@@ -131,10 +151,10 @@ const styles = StyleSheet.create({
   },
   mainImage: {
     width: '100%',
-    height: 300, // Increased height to extend the image further down
+    height: 280,
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
-    resizeMode: 'cover', // Ensures the image covers the entire container without distortion
+    resizeMode: 'cover',
   },
   headerOverlay: {
     position: 'absolute',
@@ -147,11 +167,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     paddingTop: 10,
   },
-  headerTitle: {
-    color: 'white',
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
   iconButton: {
     padding: 5,
   },
@@ -163,12 +178,12 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     color: '#4CAF50',
-    width:'100%',
+    width: '100%',
   },
   subtitle: {
     fontSize: 14,
     color: '#7A7A7A',
-    marginBottom: 2, // Reduced margin to bring subtitle closer to rating
+    marginBottom: 2,
     width: '100%',
   },
   locationRow: {
@@ -193,18 +208,13 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     width: '100%',
   },
-  location: {
-    fontSize: 14,
-    color: 'gray',
-    marginLeft: 5,
-  },
   ratingContainer: {
     flexDirection: 'row',
-    alignItems: 'center', // Aligns stars closer to the subtitle
+    alignItems: 'center',
     width: '100%',
-    marginTop: 0, // Ensures no gap above the rating
-    marginBottom: 50, // Optional: add spacing below the stars if needed
-},
+    marginTop: 0,
+    marginBottom: 50,
+  },
   description: {
     fontSize: 16,
     color: '#333',
@@ -276,11 +286,11 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   photo: {
-    width: 120,          // Increased width to match the provided image size
-    height: 180,         // Increased height for a more balanced aspect ratio
-    borderRadius: 15,    // Increased border radius for rounded corners
-    marginHorizontal: 8, // Slightly increased spacing between images
-},
+    width: 120,
+    height: 180,
+    borderRadius: 15,
+    marginHorizontal: 8,
+  },
 });
 
 export default BusinessDetails;
