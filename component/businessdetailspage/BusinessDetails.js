@@ -72,8 +72,8 @@ const BusinessDetails = ({ route, navigation }) => {
 
         {/* Action Buttons Section */}
         <View style={styles.actionContainer}>
-          <TouchableOpacity style={styles.actionButton}>
-            <Ionicons name="people-outline" size={30} color="black" />
+        <TouchableOpacity style={styles.actionButton}>
+            <Ionicons name="location-outline" size={30} color="black" />
             <Text style={styles.actionText}>Location</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.actionButton}

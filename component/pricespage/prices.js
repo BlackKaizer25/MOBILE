@@ -56,13 +56,17 @@ const Prices = ({ route, navigation }) => {
         <View style={styles.menuSection}>
           <Text style={styles.menuTitle}>MENU</Text>
           {placeDetails.prices.map((item, index) => (
-            <View key={index} style={styles.menuItem}>
+            <TouchableOpacity
+              key={index}
+              style={styles.menuItem}
+              onPress={() => navigation.navigate('ItemDetail', { item })} // Example of navigation, replace with actual screen and params
+            >
               <Image source={placeDetails.images[0]} style={styles.itemImage} />
               <View style={styles.itemDetails}>
                 <Text style={styles.itemTitle}>{item.title}</Text>
                 <Text style={styles.itemPrice}>{item.price}</Text>
               </View>
-            </View>
+            </TouchableOpacity>
           ))}
         </View>
       </ScrollView>
