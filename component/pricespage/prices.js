@@ -58,8 +58,7 @@ const Prices = ({ route, navigation }) => {
           {placeDetails.prices.map((item, index) => (
             <TouchableOpacity
               key={index}
-              style={styles.menuItem}
-              onPress={() => navigation.navigate('ItemDetail', { item })} // Example of navigation, replace with actual screen and params
+              style={styles.menuItem}// Example of navigation, replace with actual screen and params
             >
               <Image source={placeDetails.images[0]} style={styles.itemImage} />
               <View style={styles.itemDetails}>

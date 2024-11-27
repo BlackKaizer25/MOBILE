@@ -3,8 +3,9 @@ const placesData = {
     name: 'Umarika Cafe',
     location: 'Purok 15, Damilag, Manolo Fortich, Bukidnon',
     rating: 5,
+    overview: 'A charming and cozy cafe, tucked away in a peaceful corner, exuding a warm and inviting ambiance that immediately makes you feel at ease.',
     description:
-      'A cozy cafe with a beautiful ambiance, perfect for gatherings and coffee enthusiasts.',
+      'A charming and cozy cafe, tucked away in a peaceful corner, exuding a warm and inviting ambiance that immediately makes you feel at ease. With its beautifully designed interior, the space seamlessly blends rustic elegance with modern touches, creating an environment that’s as visually pleasing as it is comfortable. The soft lighting, tasteful décor, and the delightful aroma of freshly brewed coffee greet you as soon as you step inside, setting the perfect tone for a relaxing visit. This cafe is a haven for coffee enthusiasts, offering a carefully curated selection of expertly brewed beverages, from rich, aromatic espresso shots to smooth, velvety lattes and unique signature blends. Whether you are a seasoned coffee connoisseur or someone simply looking to enjoy a cup in a cozy setting, the cafe delivers an experience that is both satisfying and memorable. It is also the perfect place for gatherings of all kinds, whether you’re catching up with old friends, hosting a small meeting, or enjoying a quiet afternoon with a good book. The spacious seating arrangements cater to both intimate one-on-one conversations and larger group gatherings, ensuring that everyone can find their own little nook to relax and enjoy the moment. The cafe friendly and attentive staff add to the welcoming vibe, offering excellent service while making sure your time here is as comfortable and enjoyable as possible.',
     activities: ['Dining', 'Coffee', 'Social Events'],
     images: [
       require('../../assets/umarika.png'),

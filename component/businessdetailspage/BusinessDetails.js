@@ -51,7 +51,7 @@ const BusinessDetails = ({ route, navigation }) => {
 
         {/* Overview */}
         <Text style={styles.overviewTitle}>OVERVIEW</Text>
-        <Text style={styles.description}>{placeDetails.description}</Text>
+        <Text style={styles.description}>{placeDetails.overview}</Text>
 
         {/* Read More Button */}
         <TouchableOpacity style={styles.readMoreButton}
