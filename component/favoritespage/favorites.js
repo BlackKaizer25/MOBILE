@@ -1,23 +1,38 @@
-import React from 'react';
-import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity, TextInput } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import placesData from '../placesdatapage/placesdata';
 
 const FavoritesScreen = ({ navigation }) => {
+  const [searchQuery, setSearchQuery] = useState('');
+
   const places = Object.values(placesData);
+
+  // Filter places based on the search query
+  const filteredPlaces = searchQuery
+    ? places.filter((place) =>
+        place.name.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+    : places;
 
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
         <Text style={styles.headerText}>My Places</Text>
-        <View style={styles.headerIcons}>
-          <Ionicons name="search" size={24} color="white" style={styles.icon} />
-          <Ionicons name="filter" size={24} color="white" style={styles.icon} />
-        </View>
+      </View>
+
+      <View style={styles.searchBarContainer}>
+        <Ionicons name="search" size={20} color="#32a852" style={styles.searchIcon} />
+        <TextInput
+          style={styles.searchInput}
+          placeholder="Search..."
+          value={searchQuery}
+          onChangeText={(text) => setSearchQuery(text)}
+        />
       </View>
 
       <ScrollView contentContainerStyle={styles.contentContainer}>
-        {places.map((place, index) => (
+        {filteredPlaces.map((place, index) => (
           <TouchableOpacity
             key={index}
             style={styles.card}
@@ -48,26 +63,41 @@ const styles = StyleSheet.create({
     backgroundColor: '#e5e5e5',
   },
   headerContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: 15,
+    justifyContent: 'center',
     paddingTop: 60,
     paddingBottom: 20,
-    backgroundColor: '#32a852',
+    backgroundColor: '#32a852', // Original green header color
   },
   headerText: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: 'white',
-    paddingTop: 30,
-    paddingLeft: 145,
+    color: 'white', // White text to match the header
   },
-  headerIcons: {
+  searchBarContainer: {
     flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: 'white', // White search bar background
+    borderWidth: 0, // No border for a cleaner look
+    borderRadius: 25, // Rounded edges
+    marginHorizontal: 20,
+    marginVertical: 10,
+    paddingHorizontal: 10,
+    height: 40,
+    shadowColor: '#000', // Add slight shadow for depth
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
+    elevation: 2, // Shadow for Android
   },
-  icon: {
-    marginLeft: 15,
+  searchIcon: {
+    marginRight: 10,
+    color: '#32a852', // Green icon to match header
+  },
+  searchInput: {
+    flex: 1,
+    fontSize: 16,
+    color: '#000', // Black text for readability
   },
   contentContainer: {
     paddingHorizontal: 20,
@@ -111,5 +141,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
 });
+
 
 export default FavoritesScreen;
