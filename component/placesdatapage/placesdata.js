@@ -1,4 +1,59 @@
 const placesData = {
+  'Damilag Hills': {
+    name: 'Damilag Hills',
+    location: 'Purok 15, Damilag, Manolo Fortich, Bukidnon',
+    rating: 5,
+    overview: 'A charming and cozy cafe, tucked away in a peaceful corner, exuding a warm and inviting ambiance that immediately makes you feel at ease.',
+    description:
+      'A charming and cozy cafe, tucked away in a peaceful corner, exuding a warm and inviting ambiance that immediately makes you feel at ease. With its beautifully designed interior, the space seamlessly blends rustic elegance with modern touches, creating an environment that’s as visually pleasing as it is comfortable. The soft lighting, tasteful décor, and the delightful aroma of freshly brewed coffee greet you as soon as you step inside, setting the perfect tone for a relaxing visit. This cafe is a haven for coffee enthusiasts, offering a carefully curated selection of expertly brewed beverages, from rich, aromatic espresso shots to smooth, velvety lattes and unique signature blends. Whether you are a seasoned coffee connoisseur or someone simply looking to enjoy a cup in a cozy setting, the cafe delivers an experience that is both satisfying and memorable. It is also the perfect place for gatherings of all kinds, whether you’re catching up with old friends, hosting a small meeting, or enjoying a quiet afternoon with a good book. The spacious seating arrangements cater to both intimate one-on-one conversations and larger group gatherings, ensuring that everyone can find their own little nook to relax and enjoy the moment. The cafe friendly and attentive staff add to the welcoming vibe, offering excellent service while making sure your time here is as comfortable and enjoyable as possible.',
+    activities: ['Dining', 'Coffee', 'Social Events'],
+    images: [
+      require('../../assets/hills.png'),
+      require('../../assets/bamboo.png'),
+      require('../../assets/tree.png'),
+      require('../../assets/eunice.png'),
+      require('../../assets/brigada.png'),
+    ],
+    contactNumber: '123456789123',
+    email: 'daniel@gmail.com',
+    address: 'Purok 10',
+    guidelines:
+      'Damilag Hills, gracefully nestled within the enchanting and vibrant municipality of Manolo Fortich in the province of Bukidnon, is a truly captivating and serene destination that has gained recognition for its vast, sweeping landscapes of lush, rolling green hills, its unspoiled and pristine natural environment, and its awe-inspiring panoramic vistas that seem to stretch endlessly into the horizon. This idyllic haven, surrounded by the breathtaking beauty of nature, offers visitors a peaceful retreat away from the chaos and noise of urban life, providing an opportunity to immerse themselves in the tranquility and serenity of Bukidnons rich biodiversity, while also serving as a gateway to explore the cultural and natural wonders of this picturesque region in Northern Mindanao.',
+    prices: [
+      { title: 'Room (Good for 1)', price: 'PHP 1,000' },
+      { title: 'Room (Good for 5)', price: 'PHP 3,000' },
+      { title: 'Room (Good for 7)', price: 'PHP 4,000' },
+      { title: 'Room Set B (Good for 2)', price: 'PHP 5,000' },
+    ],
+  },
+  'Cafe 14-15': {
+    name: 'Cafe 14-15',
+    location: 'Purok 15, Damilag, Manolo Fortich, Bukidnon',
+    rating: 5,
+    overview: 'A charming and cozy cafe, tucked away in a peaceful corner, exuding a warm and inviting ambiance that immediately makes you feel at ease.',
+    description:
+      'A charming and cozy cafe, tucked away in a peaceful corner, exuding a warm and inviting ambiance that immediately makes you feel at ease. With its beautifully designed interior, the space seamlessly blends rustic elegance with modern touches, creating an environment that’s as visually pleasing as it is comfortable. The soft lighting, tasteful décor, and the delightful aroma of freshly brewed coffee greet you as soon as you step inside, setting the perfect tone for a relaxing visit. This cafe is a haven for coffee enthusiasts, offering a carefully curated selection of expertly brewed beverages, from rich, aromatic espresso shots to smooth, velvety lattes and unique signature blends. Whether you are a seasoned coffee connoisseur or someone simply looking to enjoy a cup in a cozy setting, the cafe delivers an experience that is both satisfying and memorable. It is also the perfect place for gatherings of all kinds, whether you’re catching up with old friends, hosting a small meeting, or enjoying a quiet afternoon with a good book. The spacious seating arrangements cater to both intimate one-on-one conversations and larger group gatherings, ensuring that everyone can find their own little nook to relax and enjoy the moment. The cafe friendly and attentive staff add to the welcoming vibe, offering excellent service while making sure your time here is as comfortable and enjoyable as possible.',
+    activities: ['Dining', 'Coffee', 'Social Events'],
+    images: [
+      require('../../assets/cafe.png'),
+      require('../../assets/bamboo.png'),
+      require('../../assets/tree.png'),
+      require('../../assets/eunice.png'),
+      require('../../assets/brigada.png'),
+    ],
+    contactNumber: '123456789123',
+    email: 'daniel@gmail.com',
+    address: 'Purok 10',
+    guidelines:
+      'Damilag Hills, gracefully nestled within the enchanting and vibrant municipality of Manolo Fortich in the province of Bukidnon, is a truly captivating and serene destination that has gained recognition for its vast, sweeping landscapes of lush, rolling green hills, its unspoiled and pristine natural environment, and its awe-inspiring panoramic vistas that seem to stretch endlessly into the horizon. This idyllic haven, surrounded by the breathtaking beauty of nature, offers visitors a peaceful retreat away from the chaos and noise of urban life, providing an opportunity to immerse themselves in the tranquility and serenity of Bukidnons rich biodiversity, while also serving as a gateway to explore the cultural and natural wonders of this picturesque region in Northern Mindanao.',
+    prices: [
+      { title: 'Room (Good for 1)', price: 'PHP 1,000' },
+      { title: 'Room (Good for 5)', price: 'PHP 3,000' },
+      { title: 'Room (Good for 7)', price: 'PHP 4,000' },
+      { title: 'Room Set B (Good for 2)', price: 'PHP 5,000' },
+    ],
+  },
+
   'Umarika Cafe': {
     name: 'Umarika Cafe',
     location: 'Purok 15, Damilag, Manolo Fortich, Bukidnon',

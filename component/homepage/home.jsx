@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, Image, TextInput, ScrollView, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import placesData from '../placesdatapage/placesdata';
 
 const HomeScreen = () => {
   const navigation = useNavigation();
@@ -97,7 +98,14 @@ const HomeScreen = () => {
     <Text style={styles.sectionTitle}>Featured Attractions</Text>
     <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.horizontalScrollView}>
       {filteredAttractions.map((item, index) => (
-        <TouchableOpacity key={index} style={styles.card}>
+        <TouchableOpacity
+          key={index}
+          style={styles.card}
+          onPress={() => {
+            // Navigate to BusinessDetails and pass the business name
+            navigation.navigate('BusinessDetails', { place: { name: item.name } });
+          }}
+        >
           <Image source={item.image} style={styles.cardImage} />
           <Text style={styles.cardTitle}>{item.name}</Text>
           <View style={{ flexDirection: 'row', alignItems: 'center', marginHorizontal: 5 }}>
@@ -116,7 +124,14 @@ const HomeScreen = () => {
     <Text style={styles.sectionTitle}>Foods</Text>
     <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.horizontalScrollView}>
       {filteredFoods.map((item, index) => (
-        <TouchableOpacity key={index} style={styles.card}>
+        <TouchableOpacity
+          key={index}
+          style={styles.card}
+          onPress={() => {
+            // Navigate to BusinessDetails screen and pass the business name
+            navigation.navigate('BusinessDetails', { place: { name: item.name } });
+          }}
+        >
           <Image source={item.image} style={styles.cardImage} />
           <Text style={styles.cardTitle}>{item.name}</Text>
           <View style={{ flexDirection: 'row', alignItems: 'center', marginHorizontal: 5 }}>
@@ -129,13 +144,21 @@ const HomeScreen = () => {
   </>
 )}
 
+
 {/* Hotels and Accommodations Section */}
 {filteredHotels.length > 0 && (
   <>
     <Text style={styles.sectionTitle}>Hotels and Accommodations</Text>
     <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.horizontalScrollView}>
       {filteredHotels.map((item, index) => (
-        <TouchableOpacity key={index} style={styles.card}>
+        <TouchableOpacity
+          key={index}
+          style={styles.card}
+          onPress={() => {
+            // Navigate to BusinessDetails screen and pass the business name
+            navigation.navigate('BusinessDetails', { place: { name: item.name } });
+          }}
+        >
           <Image source={item.image} style={styles.cardImage} />
           <Text style={styles.cardTitle}>{item.name}</Text>
           <View style={{ flexDirection: 'row', alignItems: 'center', marginHorizontal: 5 }}>
@@ -154,12 +177,18 @@ const HomeScreen = () => {
     <Text style={styles.sectionTitle}>Other Services</Text>
     <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.horizontalScrollView}>
       {filteredServices.map((item, index) => (
-        <TouchableOpacity key={index} style={styles.card}>
+        <TouchableOpacity
+          key={index}
+          style={styles.card}
+          onPress={() => {
+            // Navigate to BusinessDetails screen and pass the business name
+            navigation.navigate('BusinessDetails', { place: { name: item.name } });
+          }}
+        >
           <Image source={item.image} style={styles.cardImage} />
           <Text style={styles.cardTitle}>{item.name}</Text>
           <View style={{ flexDirection: 'row', alignItems: 'center', marginHorizontal: 5 }}>
             <Ionicons name="location-outline" size={16} color="green" />
-            {/* Replace \n and ensure it's in <Text> */}
             <Text style={styles.cardSubtitle}>{item.location.replace(/\n/g, ' ')}</Text>
           </View>
         </TouchableOpacity>
@@ -174,12 +203,18 @@ const HomeScreen = () => {
     <Text style={styles.sectionTitle}>Transportation</Text>
     <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.horizontalScrollView}>
       {filteredTransportation.map((item, index) => (
-        <TouchableOpacity key={index} style={styles.card}>
+        <TouchableOpacity
+          key={index}
+          style={styles.card}
+          onPress={() => {
+            // Navigate to BusinessDetails screen and pass the business name
+            navigation.navigate('BusinessDetails', { place: { name: item.name } });
+          }}
+        >
           <Image source={item.image} style={styles.cardImage} />
           <Text style={styles.cardTitle}>{item.name}</Text>
           <View style={{ flexDirection: 'row', alignItems: 'center', marginHorizontal: 5 }}>
             <Ionicons name="location-outline" size={16} color="green" />
-            {/* Replace \n and ensure it's in <Text> */}
             <Text style={styles.cardSubtitle}>{item.location.replace(/\n/g, ' ')}</Text>
           </View>
         </TouchableOpacity>
@@ -187,11 +222,7 @@ const HomeScreen = () => {
     </ScrollView>
   </>
 )}
-
-
-
-
-        {/* Footer Section */}
+  {/* Footer Section */}
         <View style={styles.footerContainer}>
           <Text style={styles.footerText}>Cultural Guidelines</Text>
           <Text style={styles.footerDescription}>
@@ -286,6 +317,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 10,
     overflow: 'hidden',
+    maxHeight: '200',
   },
   cardImage: {
     width: '100%',

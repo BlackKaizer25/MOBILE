@@ -119,8 +119,48 @@ const RootStack = () => {
           options={{
             headerShown: false,
           }}
-          
         />
+        <Stack.Screen
+          name="BusinessDetails"
+          component={BusinessDetails}
+          options={{
+            headerShown: false,
+          }}
+      />
+        <Stack.Screen
+          name="ReadMore"
+          component={ReadMore}
+          options={{
+            headerShown: false,
+          }}
+      />
+        <Stack.Screen
+          name="Prices"
+          component={Prices}
+          options={{
+            headerShown: false,
+          }}
+      />
+      <Stack.Screen
+          name="Guidelines"
+          component={GuidelinesPage}
+          options={{
+            headerShown: false,
+          }}
+      />
+       <Stack.Screen
+          name="ContactUs"
+          component={ContactUs}
+          options={{
+            headerShown: false,
+          }}
+      />
+      
+
+    
+
+
+  
       </Stack.Navigator>
     </NavigationContainer>
   );
