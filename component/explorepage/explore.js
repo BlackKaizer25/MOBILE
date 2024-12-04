@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image, TextInput, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Image, TextInput, ScrollView, TouchableOpacity, Dimensions } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+
+// Get the screen dimensions
+const { width, height } = Dimensions.get('window');
+
+// Function to scale based on screen width (375px as a base)
+const scaleSize = (size) => (width / 375) * size;  // 375 is the width of iPhone 6, a standard reference device
+const scaleFont = (size) => (width / 375) * size;
 
 const Explore = () => {
   const navigation = useNavigation();
   const [searchQuery, setSearchQuery] = useState('');
 
-  
   const attractions = [
     { name: 'Damilag Hills', location: 'Purok 11, Manolo Fortich, 8703 Bukidnon', image: require('../../assets/hills.png') },
     { name: 'Cafe 14-15', location: '9RW5+PH, Manolo  Fortich, Bukidnon', image: require('../../assets/cafe.png') },
@@ -83,140 +89,117 @@ const Explore = () => {
 
         {/* Featured Attractions */}
         {filteredAttractions.length > 0 && (
-  <>
-    <Text style={styles.sectionTitle}>Featured Attractions</Text>
-    <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.horizontalScrollView}>
-      {filteredAttractions.map((item, index) => (
-        <TouchableOpacity
-          key={index}
-          style={styles.card}
-          onPress={() => {
-            // Navigate to BusinessDetails and pass the business name
-            navigation.navigate('BusinessDetails', { place: { name: item.name } });
-          }}
-        >
-          <Image source={item.image} style={styles.cardImage} />
-          <Text style={styles.cardTitle}>{item.name}</Text>
-          <View style={{ flexDirection: 'row', alignItems: 'center', marginHorizontal: 5 }}>
-            <Ionicons name="location-outline" size={16} color="green" />
-            <Text style={styles.cardSubtitle}>{item.location.replace(/\n/g, ' ')}</Text>
-          </View>
-        </TouchableOpacity>
-      ))}
-    </ScrollView>
-  </>
-)}
+          <>
+            <Text style={styles.sectionTitle}>Featured Attractions</Text>
+            <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.horizontalScrollView}>
+              {filteredAttractions.map((item, index) => (
+                <TouchableOpacity
+                  key={index}
+                  style={styles.card}
+                  onPress={() => navigation.navigate('BusinessDetails', { place: item })}
+                >
+                  <Image source={item.image} style={styles.cardImage} />
+                  <Text style={styles.cardTitle}>{item.name}</Text>
+                  <View style={{ flexDirection: 'row', alignItems: 'top', marginHorizontal: 5 }}>
+                    <Ionicons name="location-outline" size={16} color="green" />
+                    <Text style={styles.cardSubtitle}>{item.location.replace(/\n/g, ' ')}</Text>
+                  </View>
+                </TouchableOpacity>
+              ))}
+            </ScrollView>
+          </>
+        )}
 
-{/* Food Section */}
-{filteredFoods.length > 0 && (
-  <>
-    <Text style={styles.sectionTitle}>Foods</Text>
-    <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.horizontalScrollView}>
-      {filteredFoods.map((item, index) => (
-        <TouchableOpacity
-          key={index}
-          style={styles.card}
-          onPress={() => {
-            // Navigate to BusinessDetails screen and pass the business name
-            navigation.navigate('BusinessDetails', { place: { name: item.name } });
-          }}
-        >
-          <Image source={item.image} style={styles.cardImage} />
-          <Text style={styles.cardTitle}>{item.name}</Text>
-          <View style={{ flexDirection: 'row', alignItems: 'center', marginHorizontal: 5 }}>
-            <Ionicons name="location-outline" size={16} color="green" />
-            <Text style={styles.cardSubtitle}>{item.location.replace(/\n/g, ' ')}</Text>
-          </View>
-        </TouchableOpacity>
-      ))}
-    </ScrollView>
-  </>
-)}
+        {/* Other Sections (Food, Hotels, Services, Transportation) */}
+        {filteredFoods.length > 0 && (
+          <>
+            <Text style={styles.sectionTitle}>Foods</Text>
+            <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.horizontalScrollView}>
+              {filteredFoods.map((item, index) => (
+                <TouchableOpacity
+                  key={index}
+                  style={styles.card}
+                  onPress={() => navigation.navigate('BusinessDetails', { place: item })}
+                >
+                  <Image source={item.image} style={styles.cardImage} />
+                  <Text style={styles.cardTitle}>{item.name}</Text>
+                  <View style={{ flexDirection: 'row', alignItems: 'top', marginHorizontal: 5 }}>
+                    <Ionicons name="location-outline" size={16} color="green" />
+                    <Text style={styles.cardSubtitle}>{item.location.replace(/\n/g, ' ')}</Text>
+                  </View>
+                </TouchableOpacity>
+              ))}
+            </ScrollView>
+          </>
+        )}
 
+        {filteredHotels.length > 0 && (
+          <>
+            <Text style={styles.sectionTitle}>Hotels and Accommodations</Text>
+            <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.horizontalScrollView}>
+              {filteredHotels.map((item, index) => (
+                <TouchableOpacity
+                  key={index}
+                  style={styles.card}
+                  onPress={() => navigation.navigate('BusinessDetails', { place: item })}
+                >
+                  <Image source={item.image} style={styles.cardImage} />
+                  <Text style={styles.cardTitle}>{item.name}</Text>
+                  <View style={{ flexDirection: 'row', alignItems: 'top', marginHorizontal: 5 }}>
+                    <Ionicons name="location-outline" size={16} color="green" />
+                    <Text style={styles.cardSubtitle}>{item.location.replace(/\n/g, ' ')}</Text>
+                  </View>
+                </TouchableOpacity>
+              ))}
+            </ScrollView>
+          </>
+        )}
 
-{/* Hotels and Accommodations Section */}
-{filteredHotels.length > 0 && (
-  <>
-    <Text style={styles.sectionTitle}>Hotels and Accommodations</Text>
-    <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.horizontalScrollView}>
-      {filteredHotels.map((item, index) => (
-        <TouchableOpacity
-          key={index}
-          style={styles.card}
-          onPress={() => {
-            // Navigate to BusinessDetails screen and pass the business name
-            navigation.navigate('BusinessDetails', { place: { name: item.name } });
-          }}
-        >
-          <Image source={item.image} style={styles.cardImage} />
-          <Text style={styles.cardTitle}>{item.name}</Text>
-          <View style={{ flexDirection: 'row', alignItems: 'center', marginHorizontal: 5 }}>
-            <Ionicons name="location-outline" size={16} color="green" />
-            <Text style={styles.cardSubtitle}>{item.location.replace(/\n/g, ' ')}</Text>
-          </View>
-        </TouchableOpacity>
-      ))}
-    </ScrollView>
-  </>
-)}
+        {filteredServices.length > 0 && (
+          <>
+            <Text style={styles.sectionTitle}>Other Services</Text>
+            <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.horizontalScrollView}>
+              {filteredServices.map((item, index) => (
+                <TouchableOpacity
+                  key={index}
+                  style={styles.card}
+                  onPress={() => navigation.navigate('BusinessDetails', { place: item })}
+                >
+                  <Image source={item.image} style={styles.cardImage} />
+                  <Text style={styles.cardTitle}>{item.name}</Text>
+                  <View style={{ flexDirection: 'row', alignItems: 'top', marginHorizontal: 5 }}>
+                    <Ionicons name="location-outline" size={16} color="green" />
+                    <Text style={styles.cardSubtitle}>{item.location.replace(/\n/g, ' ')}</Text>
+                  </View>
+                </TouchableOpacity>
+              ))}
+            </ScrollView>
+          </>
+        )}
 
-{/* Other Services Section */}
-{filteredServices.length > 0 && (
-  <>
-    <Text style={styles.sectionTitle}>Other Services</Text>
-    <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.horizontalScrollView}>
-      {filteredServices.map((item, index) => (
-        <TouchableOpacity
-          key={index}
-          style={styles.card}
-          onPress={() => {
-            // Navigate to BusinessDetails screen and pass the business name
-            navigation.navigate('BusinessDetails', { place: { name: item.name } });
-          }}
-        >
-          <Image source={item.image} style={styles.cardImage} />
-          <Text style={styles.cardTitle}>{item.name}</Text>
-          <View style={{ flexDirection: 'row', alignItems: 'center', marginHorizontal: 5 }}>
-            <Ionicons name="location-outline" size={16} color="green" />
-            <Text style={styles.cardSubtitle}>{item.location.replace(/\n/g, ' ')}</Text>
-          </View>
-        </TouchableOpacity>
-      ))}
-    </ScrollView>
-  </>
-)}
-
-{/* Transportation Section */}
-{filteredTransportation.length > 0 && (
-  <>
-    <Text style={styles.sectionTitle}>Transportation</Text>
-    <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.horizontalScrollView}>
-      {filteredTransportation.map((item, index) => (
-        <TouchableOpacity
-          key={index}
-          style={styles.card}
-          onPress={() => {
-            // Navigate to BusinessDetails screen and pass the business name
-            navigation.navigate('BusinessDetails', { place: { name: item.name } });
-          }}
-        >
-          <Image source={item.image} style={styles.cardImage} />
-          <Text style={styles.cardTitle}>{item.name}</Text>
-          <View style={{ flexDirection: 'row', alignItems: 'center', marginHorizontal: 5 }}>
-            <Ionicons name="location-outline" size={16} color="green" />
-            <Text style={styles.cardSubtitle}>{item.location.replace(/\n/g, ' ')}</Text>
-          </View>
-        </TouchableOpacity>
-      ))}
-    </ScrollView>
-  </>
-)}
-
+        {filteredTransportation.length > 0 && (
+          <>
+            <Text style={styles.sectionTitle}>Transportation</Text>
+            <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.horizontalScrollView}>
+              {filteredTransportation.map((item, index) => (
+                <TouchableOpacity
+                  key={index}
+                  style={styles.card}>
+                  <Image source={item.image} style={styles.cardImage} />
+                  <Text style={styles.cardTitle}>{item.name}</Text>
+                  <View style={{ flexDirection: 'row', alignItems: 'top', marginHorizontal: 5 }}>
+                    <Ionicons name="location-outline" size={16} color="green" />
+                    <Text style={styles.cardSubtitle}>{item.location.replace(/\n/g, ' ')}</Text>
+                  </View>
+                </TouchableOpacity>
+              ))}
+            </ScrollView>
+          </>
+        )}
       </ScrollView>
     </View>
   );
 };
-
 
 const styles = StyleSheet.create({
   container: {
@@ -239,33 +222,33 @@ const styles = StyleSheet.create({
   profileImage: {
     width: 40,
     height: 40,
-    borderRadius: 30, 
+    borderRadius: 30,
   },
   contentContainer: {
     flexGrow: 1, // Use flexGrow to ensure content expands and is scrollable
-    paddingHorizontal: 15,
-    paddingBottom: 50, // Add padding at bottom to ensure content isn't cut off
+    paddingHorizontal: scaleSize(15), // Responsively adjust padding
+    paddingBottom: scaleSize(50), // Add padding at bottom to ensure content isn't cut off
   },
   greetingText: {
-    fontSize: 24,
+    fontSize: scaleFont(24),
     fontWeight: 'bold',
-    marginTop: 10,
+    marginTop: scaleSize(10),
   },
   exploreText: {
-    fontSize: 18,
+    fontSize: scaleFont(18),
     color: 'gray',
-    marginBottom: 20,
+    marginBottom: scaleSize(20),
   },
   searchBarContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: 'white', // White search bar background
     borderWidth: 0, // No border for a cleaner look
-    borderRadius: 25, // Rounded edges
-    marginHorizontal: 20,
-    marginVertical: 10,
-    paddingHorizontal: 10,
-    height: 40,
+    borderRadius: scaleSize(25), // Rounded edges
+    marginHorizontal: scaleSize(20),
+    marginVertical: scaleSize(10),
+    paddingHorizontal: scaleSize(10),
+    height: scaleSize(40),
     shadowColor: '#000', // Add slight shadow for depth
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
@@ -274,53 +257,43 @@ const styles = StyleSheet.create({
   },
 
   searchIcon: {
-    marginRight: 10,
+    marginRight: scaleSize(10),
     color: 'green',
   },
   searchInput: {
     flex: 1,
-    height: 40,
+    height: scaleSize(40),
   },
   sectionTitle: {
-    fontSize: 18,
+    fontSize: scaleFont(18),
     fontWeight: 'bold',
-    marginVertical: 10,
+    marginVertical: scaleSize(10),
   },
   horizontalScrollView: {
-    marginBottom: 20,
+    marginBottom: scaleSize(20),
   },
- card: {
-  width: 150, // Adjust to your preferred fixed width
-  marginRight: 10,
-  backgroundColor: 'white',
-  borderRadius: 10,
-  overflow: 'hidden',
-  flex: 1, // Ensure it can grow with content
-  maxHeight: '200'
-},
-
+  card: {
+    width: scaleSize(150),
+    marginRight: scaleSize(10),
+    backgroundColor: 'white',
+    borderRadius: scaleSize(10),
+    overflow: 'hidden',
+  },
   cardImage: {
     width: '100%',
-    height: 100,
+    height: scaleSize(100),
   },
   cardTitle: {
-    fontSize: 16,
+    fontSize: scaleFont(16),
     fontWeight: 'bold',
-    margin: 5,
+    margin: scaleSize(5),
   },
   cardSubtitle: {
-    fontSize: 14,
+    fontSize: scaleFont(14),
     color: 'gray',
-    marginHorizontal: 5,
-    marginBottom: 5,
+    marginHorizontal: scaleSize(5),
+    marginBottom: scaleSize(5),
   },
-  footerContainer: {
-    marginVertical: 20,
-    padding: 20,
-    backgroundColor: 'white',
-    borderRadius: 10,
-  },
-  
 });
 
 export default Explore;
